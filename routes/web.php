@@ -20,3 +20,5 @@ Route::get('/', function () {
 //Route Resource 
 Route::get('/departemen',[DepartemenController::class, 'index']);
 
+Route::resource('/pegawai', 
+\App\Http\Controllers\PegawaiController::class);
