@@ -17,8 +17,9 @@ Route::get('/', function () {
     return view('dashboard'); /*arahkan ke halaman dashboard */
 });
 
-//Route Resource 
-Route::get('/departemen',[DepartemenController::class, 'index']);
 
-Route::resource('/pegawai', 
-\App\Http\Controllers\PegawaiController::class);
+//Route Resource 
+Route::resource('/departemen', \App\Http\Controllers\DepartemenController::class);
+
+Route::resource('/pegawai', \App\Http\Controllers\PegawaiController::class);
+

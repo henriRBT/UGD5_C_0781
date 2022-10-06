@@ -33,15 +33,19 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-body">
+                            
+                        <a href="{{ route('departemen.create') }}" class="btn btn-md btn-success mb-3">Tambah Departemen</a>
+                           
                             <div class="table-responsive p-0">
-
+                            
                             <table class="table table-hover text-nowrap">
-
-                                <thead>
+                                
+                            <thead>
                                     <tr>
                                         <th class="text-center">Nama Departemen</th>
                                         <th class="text-center">Nama Manger</th>
                                         <th class="text-center">Jumlah Pegawai</th>
+                                        <th class="text-center">Aksi</th>
                                     </tr>
                                 </thead>
 
@@ -51,6 +55,15 @@
                                         <td class="text-center">{{$item->nama_departemen}} </td>
                                         <td class="text-center">{{$item->nama_manager}} </td>
                                         <td class="text-center">{{$item->jumlah_pegawai}} </td>
+                                        <td class="text-center">
+                                            <form onsubmit="return confirm('Apakah Anda Yakin ?');" action="{{ route('departemen.destroy', $item->id) }}" method="Post">
+                                                <a href="{{ route('departemen.edit', $item->id) }}" class="btn btn-sm btn-primary">EDIT</a>
+                                                @csrf
+
+                                                @method('DELETE')
+                                                <button type="submit" class="btn btn-sm btn-danger">Hapus</button>
+                                            </form> 
+                                        </td>
                                     </tr>
 
                                     @empty
@@ -73,4 +86,12 @@
             </div> <!-- /.row -->
         </div> <!-- /.container-fluid -->
     </div>
+@endsection
+
+@section('script')
+    @if(session()->has('success'))
+    <script>
+        toastr.success("{{session('success')}}")
+    </script>
+    @endif
 @endsection
