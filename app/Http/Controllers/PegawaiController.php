@@ -18,4 +18,12 @@ class PegawaiController extends Controller
         
         return view('pegawai.index', compact('pegawai'));
      }
+
+     public function destroy($id)
+     {
+        $pegawai = Pegawai::where('id',$id)->firstorfail()->delete();
+        echo ("Pegawai Berhasil Dihapus");
+        return redirect()->route('pegawai.index')->with((['success'
+            => 'Data berhasil Dihapus']));
+     }
 }
