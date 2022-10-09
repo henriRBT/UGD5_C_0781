@@ -5,7 +5,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1 class="m-0">Tambah Pegawai</h1>
+                    <h1 class="m-0">Edit Pegawai</h1>
                 </div>
 
                 <!-- /.col -->
@@ -15,7 +15,7 @@
                             <a href="#">Pegawai</a>
                         </li>
 
-                        <li class="breadcrumb-item active">Tambah</li>
+                        <li class="breadcrumb-item active">Edit</li>
                     </ol>
                 </div> <!-- /.col -->
             </div> <!-- /.row -->
@@ -43,12 +43,13 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-body">
-                        <form action="{{ route('pegawai.store') }}"  method="POST" enctype="multipart/form-data">
+                            <form action="{{ route('pegawai.update', $pegawai->id) }}"  method="POST" enctype="multipart/form-data">
                             @csrf
+                            @method('PUT')
                                 <div class="form-row">
                                     <div class="form-group col-md-12">
                                         <label class="font-weight-bold">Nomor Induk Pegawai</label>
-                                        <input type="text" class="form-control @error('nomor_induk_pegawai') is-invalid @enderror" name="nomor_induk_pegawai" value="{{ old('nomor_induk_pegawai') }}" placeholder="Masukkan Nomor Induk Pegawai"> 
+                                        <input type="text" class="form-control @error('nomor_induk_pegawai') is-invalid @enderror" name="nomor_induk_pegawai" value=" {{$pegawai->nomor_induk_pegawai}}" placeholder="Masukkan Nomor Induk Pegawai"> 
                                         
                                         @error('nomor_induk_pegawai')
                                         <div class="alert alert-danger">
@@ -62,7 +63,7 @@
                                 <div class="form-row">
                                     <div class="form-group col-md-6">
                                         <label class="font-weight-bold">Nama Pegawai</label>
-                                        <input type="text" class="form-control @error('nama_pegawai') is-invalid @enderror" name="nama_pegawai"  value="{{old('nama_pegawai')}}" placeholder="Masukkan Nama Pegawair">
+                                        <input type="text" class="form-control @error('nama_pegawai') is-invalid @enderror" name="nama_pegawai"  value="{{$pegawai->nama_pegawai}}" placeholder="Masukkan Nama Pegawair">
                                         
                                         @error('nama_pegawai')
 
@@ -72,10 +73,9 @@
                                         @enderror
                                     </div>
 
-                                    
                                 <div class="form-group col-md-6">
                                     <label class="font-weight-bold">Email</label>
-                                    <input type="text" class="form-control @error('email') is-invalid @enderror" name="email" value=" {{old('email')}}" placeholder="Masukkan Email"> 
+                                    <input type="text" class="form-control @error('email') is-invalid @enderror" name="email" value=" {{$pegawai->email}}" placeholder="Masukkan Email"> 
                                         
                                     @error('email')
                                         
@@ -89,7 +89,7 @@
                                 <div class="form-row">
                                     <div class="form-group col-md-12">
                                         <label class="font-weight-bold">Telepon</label>
-                                        <input type="text" class="form-control @error('telepon') is-invalid @enderror" name="telepon" value=" {{old('telepon')}}" placeholder="Masukkan Nomor Telepon"> 
+                                        <input type="text" class="form-control @error('telepon') is-invalid @enderror" name="telepon" value=" {{$pegawai->telepon}}" placeholder="Masukkan Nomor Telepon"> 
                                         
                                         @error('telepon')
                                         <div class="invalid-feedback">
@@ -100,7 +100,7 @@
                                     </div>
                                 </div>
 
-                                <button type="submit" class="btn btn-md btn-primary">Tambah</button>
+                                <button type="submit" class="btn btn-md btn-primary">UPDATE</button>
                             </form>
                         </div><!-- /.card-body -->
                     </div> <!-- /.card -->
